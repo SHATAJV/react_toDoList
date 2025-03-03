@@ -1,11 +1,11 @@
 import React from "react";
 import Task from "./Task";
 
-const ToDolist = ({tasks}) => {
+const ToDolist = ({tasks , onToggle}) => {
     return(
         <ul>
             {tasks.map((task) => (
-                <Task key={task.id} task={task} />
+                <Task key={task.id} task={task} onToggle={onToggle}/>
             ))}
         </ul>
 

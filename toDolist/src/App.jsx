@@ -18,12 +18,19 @@ const App = () =>{
     const newTask = {id: tasks.length +1, title};
     setTasks([...tasks, newTask])
   };
+  const toggleTask = (taskId) => {
+    setTasks(tasks.map(task =>
+      task.id === taskId ? {...task,completed: !task.completed} : task
+    ));
+  };
   return(
     <div>
       <h1> ToDo List with React</h1>
       <AddTodoform onAddTask={handleAddTask} />
-      <ToDolist tasks={tasks} />
+      <ToDolist tasks={tasks} onToggle={toggleTask}/>
     </div>
   );
+  
+  
 };
 export default App; 
