@@ -1,22 +1,24 @@
 {
   "tasks": [
     {
-        "id": "1",
-        "title": "learn react",
-        "completed": false
-
+      "id": "1",
+      "title": "learn react",
+      "completed": false
     },
     {
-        "id": "2",
-        "title": "create a toDoList",
-        "completed": false
-
+      "id": "2",
+      "title": "create a toDoList",
+      "completed": false
     },
     {
-        "id": "3",
-        "title": "practice more",
-        "completed": false
-
+      "id": "3",
+      "title": "practice more",
+      "completed": false
+    },
+    {
+      "id": "7d3d",
+      "title": "music",
+      "completed": false
     }
-  ]  
+  ]
 }

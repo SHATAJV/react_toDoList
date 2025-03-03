@@ -1,50 +1,52 @@
-
-import './App.css'
-import React, { useEffect, useState } from 'react'
+import './App.css';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'; // 
 import Task from './components/Task';
 import ToDolist from './components/ToDoList';
 import AddTodoform from './components/AddTodoForm';
 
-const App = () =>{
-  const [tasks,setTasks] = useState([]);
-  useEffect(()=>{
-    axios
-        .get("http://localhost:5000/tasks")
-        .then((response)=> setTasks(response.data))
-        .catch((error) => console.error("error to recieve the tasks:", error));
-  }, []
-  );
+const App = () => {
+  const [tasks, setTasks] = useState([]);
 
-  const handleAddTask = (title) =>{
-    const newTask = { title, completed: false};
+
+  useEffect(() => {
     axios
-        .post("http://localhost:5000/tasks")
-        .then((response)=> setTasks([...tasks, response.data]))
-        .catch((error) => console.error("error to add the tasks:", error));
-    
+      .get("http://localhost:5000/tasks")
+      .then((response) => setTasks(response.data))
+      .catch((error) => console.error("Erreur lors de la récupération des tâches:", error));
+  }, []);
+
+  
+  const handleAddTask = (title) => {
+    const newTask = { title, completed: false };
+
+    axios
+      .post("http://localhost:5000/tasks", newTask) 
+      .then((response) => setTasks([...tasks, response.data]))
+      .catch((error) => console.error("Erreur lors de l'ajout de la tâche:", error));
   };
-  const handdleToggleTask = (id) =>{
-    const task = task.find((task)=>task.id===id);
-    const updateTask = {...task, completed: !task.completed};
-    axios
-        .put (`http://localhost:5000/tasks/${id}`,updateTask)
-        .then(()=> setTasks(tasks.map((t)=> (t.id===id ? updateTask :t))))
-        .catch((error) => console.error("error to update the tasks:", error));
-  };  
 
-        const toggleTask = (taskId) => {
-          setTasks(tasks.map(task =>
-            task.id === taskId ? {...task,completed: !task.completed} : task
-          ));
-        };
-        return(
-          <div>
-            <h1> ToDo List with React</h1>
-            <AddTodoform onAddTask={handleAddTask} />
-            <ToDolist tasks={tasks} onToggle={toggleTask}/>
-          </div>
-        );
-        
-    
+  const handleToggleTask = (id) => {
+    const task = tasks.find((task) => task.id === id);
+    if (!task) return; 
+
+    const updatedTask = { ...task, completed: !task.completed };
+
+    axios
+      .put(`http://localhost:5000/tasks/${id}`, updatedTask)
+      .then(() =>
+        setTasks(tasks.map((t) => (t.id === id ? updatedTask : t)))
+      )
+      .catch((error) => console.error("Erreur lors de la mise à jour de la tâche:", error));
+  };
+
+  return (
+    <div>
+      <h1>ToDo List with React</h1>
+      <AddTodoform onAddTask={handleAddTask} />
+      <ToDolist tasks={tasks} onToggle={handleToggleTask} />
+    </div>
+  );
 };
-export default App; 
+
+export default App;
