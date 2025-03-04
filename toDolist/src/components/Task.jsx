@@ -16,7 +16,7 @@ const Task = ({ task, onToggle, onDelete }) => {
         style={{ textDecoration: task.completed ? "line-through" : "none" }}
       >
         <span>{task.title}</span>
-        <button onClick={handleDelete} style={{ color: "red" }}>
+        <button onClick={handleDelete} style={{ color: "brown" }}>
           X
         </button>
       </li>

@@ -8,6 +8,7 @@ import AddTodoform from './components/AddTodoForm';
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [filterPriority, setFilterPriority] = useState('toutes');
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     axios
@@ -60,8 +61,12 @@ const App = () => {
     ? tasks 
     : tasks.filter(task => task.priority === filterPriority);
 
+    const toggleTheme = () => {
+      setTheme(theme === 'light' ? 'dark' : 'light');
+    };  
+
     return (
-      <div>
+      <div className={theme}>
         <h1>ToDo List with React</h1>
         <AddTodoform onAddTask={handleAddTask} />
         
@@ -79,6 +84,9 @@ const App = () => {
           <p>Il reste {remainingTasksCount} tâche(s) à accomplir</p>
         </div>
           <ToDolist tasks={filteredTasks} onToggle={handleToggleTask} onDelete={handleDeleteTask} />
+          <button onClick={toggleTheme}>
+              Changer de thème ({theme === 'light' ? 'Sombre' : 'Clair'})
+          </button>
       </div>
     );
     

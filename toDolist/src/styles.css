@@ -1,57 +1,107 @@
-/* styles.css */
+/* Style général */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-  
+h1 {
+  text-align: center;
+  color: #333;
+}
 
-  input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-left: 5px;
-  }
-  
-  button:hover {
-    background: #218838;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    background: #f9f9f9;
-    margin-top: 5px;
-    border-radius: 4px;
-  }
-  
-  
+button {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
 
-  
+button:hover {
+  background-color: #218838;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 500px;
+  margin: 0;
+}
+
+/* Tâches */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f9f9f9;
+  margin-top: 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+li button {
+  background-color: red;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: darkred;
+}
+
+li.completed {
+  text-decoration: line-through;
+}
+
+/* Mode clair */
+.light {
+  background-color: white;
+  color: black;
+}
+
+.light button {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Mode sombre */
+.dark {
+  background-color: #2c2c2c;
+  color: white;
+}
+
+.dark h1 {
+  color: #f4f4f4;
+}
+
+.dark ul {
+  background-color: #333;
+  color: white;
+}
+
+.dark li {
+  background-color: #444;
+}
+
+.dark li button {
+  background-color: #f44336;
+}
+
+.dark li.completed {
+  color: #bbb;
+}
+
+/* Animation et transitions */
+.light, .dark {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
