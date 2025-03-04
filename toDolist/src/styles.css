@@ -1,4 +1,4 @@
-/* Style général */
+/* Mode général pour tout le site */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f4f9;
@@ -16,36 +16,41 @@ h1 {
   font-size: 36px;
   color: #333;
   margin-bottom: 30px;
+  font-weight: 600;
 }
 
 /* Formulaire d'ajout de tâche */
-input {
-  width: 300px;
+input.task-input {
   padding: 12px 15px;
-  margin: 10px 0;
-  border: 2px solid #ddd;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 250px;
+  background-color: #fff;
+  color: #333;
   font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input.task-input:focus {
   outline: none;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
   border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-button {
+/* Bouton pour le thème */
+.theme-toggle {
   padding: 10px 20px;
   border: none;
   background-color: #28a745;
   color: white;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
+.theme-toggle:hover {
   background-color: #218838;
   transform: scale(1.05);
 }
@@ -55,55 +60,11 @@ ul {
   list-style: none;
   padding: 0;
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0;
 }
 
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background: #fff;
-  margin-top: 10px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
-li:hover {
-  transform: translateY(-3px);
-}
-
-li button {
-  background-color: #f44336;
-  padding: 8px 12px;
-  border-radius: 50%;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-li button:hover {
-  background-color: #d32f2f;
-}
-
-li.completed {
-  text-decoration: line-through;
-  color: #888;
-}
-
-/* Modes de thème (clair et sombre) */
-.light {
-  background-color: white;
-  color: black;
-}
-
-.light button {
-  background-color: #28a745;
-}
-
+/* Mode sombre */
 .dark {
   background-color: #2c2c2c;
   color: white;
@@ -113,41 +74,140 @@ li.completed {
   color: #f4f4f4;
 }
 
+.dark input, .dark .task-input {
+  background-color: #555;
+  color: white;
+  border: 1px solid #666;
+}
+
+.dark .task-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Liste des tâches en mode sombre */
 .dark ul {
   background-color: #333;
 }
 
 .dark li {
   background-color: #444;
-}
-
-.dark li button {
-  background-color: #f44336;
-}
-
-/* Animation des transitions */
-.light, .dark {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.light li:hover {
-  background-color: #f1f1f1;
+  color: #f4f4f4;
+  transition: background-color 0.3s ease;
 }
 
 .dark li:hover {
   background-color: #555;
 }
 
-/* Styles pour les filtres de priorité */
-select {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-top: 20px;
-  background-color: white;
+.dark li button {
+  background-color: #f44336;
 }
 
-select:focus {
-  border-color: #007bff;
+.dark li button:hover {
+  background-color: #d32f2f;
 }
+
+/* Liste des tâches en mode clair */
+.light {
+  background-color: white;
+  color: black;
+}
+
+.light li {
+  background-color: #fff;
+  color: black;
+  transition: background-color 0.3s ease;
+}
+
+.light li:hover {
+  background-color: #f1f1f1;
+}
+
+.light input, .light .task-input {
+  background-color: #fff;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.light li button {
+  background-color: #f44336;
+  transition: background-color 0.3s ease;
+}
+
+.light li button:hover {
+  background-color: #d32f2f;
+}
+
+/* Style de base pour les éléments de tâche */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+li:hover {
+  transform: translateY(-3px);
+}
+
+li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+li button:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+li span {
+  font-size: 18px;
+  color: inherit;
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Icônes */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+/* Boutons des icônes */
+button.edit {
+  color: #007bff;
+}
+
+button.check {
+  color: #28a745;
+}
+
+button.delete {
+  color: #f44336;
+}
+
+/* Animation de transition du mode clair/sombre */
+.light, .dark {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+

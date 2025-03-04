@@ -1,15 +1,17 @@
 import React from "react";
 import Task from "./Task";
 
-const ToDolist = ({ tasks, onToggle, onDelete }) => {
-  if (!tasks || tasks.length === 0) {
-    return <p>Aucune tâche à afficher.</p>;
-  }
-
+const ToDolist = ({ tasks, onToggle, onDelete, onEdit }) => {
   return (
     <ul>
       {tasks.map((task) => (
-        <Task key={task.id} task={task} onToggle={onToggle} onDelete={onDelete} />
+        <Task
+          key={task.id}
+          task={task}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onToggle={onToggle}
+        />
       ))}
     </ul>
   );
