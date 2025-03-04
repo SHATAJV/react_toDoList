@@ -13,17 +13,17 @@
     {
       "id": "7d3d",
       "title": "music",
-      "completed": false
+      "completed": true
     },
     {
       "id": "b137",
       "title": "dance",
-      "completed": false
+      "completed": true
     },
     {
       "id": "1a44",
       "title": "python",
-      "completed": false
+      "completed": true
     }
   ]
 }

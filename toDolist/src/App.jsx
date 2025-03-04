@@ -49,13 +49,16 @@ const App = () => {
       })
       .catch((error) => console.error("Erreur lors de la suppression de la tâche:", error));
   };
-  
+  const remainingTasksCount = tasks.filter(task => !task.completed).length;
 
   return (
     <div>
       <h1>ToDo List with React</h1>
       <AddTodoform onAddTask={handleAddTask} />
       <ToDolist tasks={tasks} onToggle={handleToggleTask} onDelete={handleDeleteTask} />
+      <div>
+        <h2>{remainingTasksCount} tâche(s) à accomplir</h2>
+      </div>
     </div>
   );
 };
