@@ -12,10 +12,11 @@ const App = () => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/tasks")
-      .then((response) => setTasks(response.data))
+      .then((response) => {
+        setTasks(response.data);
+      })
       .catch((error) => console.error("Erreur lors de la récupération des tâches:", error));
   }, []);
-
   
   const handleAddTask = (title) => {
     const newTask = { title, completed: false };
@@ -40,11 +41,21 @@ const App = () => {
       .catch((error) => console.error("Erreur lors de la mise à jour de la tâche:", error));
   };
 
+  const handleDeleteTask = (id) => {
+    axios
+      .delete(`http://localhost:5000/tasks/${id}`)
+      .then(() => {
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+      })
+      .catch((error) => console.error("Erreur lors de la suppression de la tâche:", error));
+  };
+  
+
   return (
     <div>
       <h1>ToDo List with React</h1>
       <AddTodoform onAddTask={handleAddTask} />
-      <ToDolist tasks={tasks} onToggle={handleToggleTask} />
+      <ToDolist tasks={tasks} onToggle={handleToggleTask} onDelete={handleDeleteTask} />
     </div>
   );
 };
